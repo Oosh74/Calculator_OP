@@ -3,7 +3,7 @@
 *::after,
 * {
   box-sizing: border-box;
-  /* outline: 1px solid blue; */
+  outline: 1px solid blue;
 }
 
 /* Prevent font size inflation */
@@ -71,14 +71,23 @@ body {
 }
 
 .number-display {
-  height: 25%;
+  display: flex;
+  padding: 16px;
+  color: white;
+  background-color: #1b1e23;
+  width: 100%;
+  height: auto;
+}
+
+.numbers {
+  font-size: 2rem;
+  flex-basis: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 16px;
-  color: white;
-  font-size: 3rem;
-  background-color: #1b1e23;
+  height: auto;
+  overflow-x: auto;
+  white-space: no-wrap;
 }
 
 .button-wrapper {
