@@ -24,6 +24,10 @@ let operatorObj = {
   },
 };
 
+const equate = () => {
+  numbers.textContent = `${operatorObj[operator](x, y)}`;
+};
+
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     inputText.push(button.textContent);
@@ -38,9 +42,13 @@ numberButtons.forEach((button) => {
 
 operators.forEach((button) => {
   button.addEventListener('click', () => {
-    inputText.push(button.textContent);
-    numbers.textContent = inputText.join('');
-    operator = button.textContent;
+    if (operator.length > 0) {
+      equate();
+    } else {
+      inputText.push(button.textContent);
+      numbers.textContent = inputText.join('');
+      operator = button.textContent;
+    }
   });
 });
 
@@ -52,9 +60,7 @@ clearBtn.addEventListener('click', () => {
   operator = '';
 });
 
-equalSign.addEventListener('click', () => {
-  numbers.textContent = `${operatorObj[operator](x, y)}`;
-});
+equalSign.addEventListener('click', equate);
 
 /* TODO:
 Change how the text display is updated, it should update based on the X, Y, and Operator values. Make the calculator
