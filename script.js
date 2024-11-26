@@ -26,6 +26,12 @@ let operatorObj = {
 
 const equate = () => {
   numbers.textContent = `${operatorObj[operator](x, y)}`;
+  inputText = [numbers.textContent];
+  console.log('regular equate text object', numbers.textContent);
+  console.log('regular equate input Array', inputText);
+  x = numbers.textContent;
+  y = '';
+  operator = '';
 };
 
 numberButtons.forEach((button) => {
@@ -42,13 +48,12 @@ numberButtons.forEach((button) => {
 
 operators.forEach((button) => {
   button.addEventListener('click', () => {
-    if (operator.length > 0) {
-      equate();
-    } else {
-      inputText.push(button.textContent);
-      numbers.textContent = inputText.join('');
-      operator = button.textContent;
-    }
+    // if (operator.length > 0) {
+    //   equate('operator', button.textContent);
+    // } else {
+    inputText.push(button.textContent);
+    numbers.textContent = inputText.join('');
+    operator = button.textContent;
   });
 });
 
