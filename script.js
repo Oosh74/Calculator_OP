@@ -60,6 +60,10 @@ numberButtons.forEach((button) => {
 
 operators.forEach((button) => {
   button.addEventListener('click', () => {
+    if (operator && !y) {
+      return;
+    }
+
     if (operator.length > 0 && y.length > 0) {
       equate(true, button.textContent);
     } else {
