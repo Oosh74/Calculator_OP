@@ -25,6 +25,10 @@ let calculationsObj = {
 };
 
 const equate = (existingOperator = false, operatorClicked) => {
+  if (!y) {
+    return;
+  }
+
   if (existingOperator === true) {
     // Perform calculation with current x, y, and operator
     textDisplay.textContent = `${calculationsObj[operator](x, y)}`;
@@ -85,8 +89,7 @@ clearBtn.addEventListener('click', () => {
 equalSign.addEventListener('click', equate);
 
 /* TODO:
-Gotchas: watch out for and fix these bugs if they show up in your code:
-- Your calculator should not evaluate more than a single pair of numbers at a time. Example: you enter a number (12), followed by an operator button (+), a second number button (7), and a second operator button (-). Your calculator should then do the following: first, evaluate the initial pair of numbers (12 + 7), then display the result of that calculation (19). Finally, use that result (19) as the first number in a new calculation, along with the next operator (-). An example of the behavior we’re looking for can be seen in this student’s calculator live preview.
+
 - You should round answers with long decimals so that they don’t overflow the display.
 - Pressing = before entering all of the numbers or an operator could cause problems!
 - Pressing “clear” should wipe out any existing data. Make sure the user is really starting fresh after pressing “clear”.
