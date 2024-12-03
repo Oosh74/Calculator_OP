@@ -11,23 +11,24 @@ let operator = '';
 
 let calculationsObj = {
   '+': (x, y) => {
-    return Number(x) + Number(y);
+    let result = Number(x) + Number(y);
+    return result % 1 === 0 ? result : parseFloat(result.toFixed(2));
   },
   '-': (x, y) => {
-    return Number(x) - Number(y);
+    let result = Number(x) - Number(y);
+    return result % 1 === 0 ? result : parseFloat(result.toFixed(2));
   },
   '/': (x, y) => {
-    return Number(x) / Number(y);
+    let result = Number(x) / Number(y);
+    return result % 1 === 0 ? result : parseFloat(result.toFixed(2));
   },
   '*': (x, y) => {
-    return Number(x) * Number(y);
+    let result = Number(x) * Number(y);
+    return result % 1 === 0 ? result : parseFloat(result.toFixed(2));
   },
 };
 
 const equate = (existingOperator = false, operatorClicked) => {
-  console.log(`x is: "${x}" and its type is: ${typeof x}`);
-  console.log(`operator is: "${operator}" and its type is: ${typeof operator}`);
-
   if (x === '0' && operator === '/') {
     textDisplay.textContent = 'You shall not pass!';
     setTimeout(() => {
@@ -52,7 +53,6 @@ const equate = (existingOperator = false, operatorClicked) => {
     inputText = [x, operatorClicked];
     textDisplay.textContent = inputText.join('');
   } else {
-    console.log('existingOperator', existingOperator);
     textDisplay.textContent = `${calculationsObj[operator](x, y)}`;
     inputText = [textDisplay.textContent];
     x = textDisplay.textContent;
@@ -104,7 +104,6 @@ equalSign.addEventListener('click', equate);
 /* TODO:
 
 - You should round answers with long decimals so that they don’t overflow the display.
-- Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
 
 Extra credit
 -Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. 
