@@ -25,6 +25,17 @@ let calculationsObj = {
 };
 
 const equate = (existingOperator = false, operatorClicked) => {
+  console.log(`x is: "${x}" and its type is: ${typeof x}`);
+  console.log(`operator is: "${operator}" and its type is: ${typeof operator}`);
+
+  if (x === '0' && operator === '/') {
+    textDisplay.textContent = 'You shall not pass!';
+    setTimeout(() => {
+      clear();
+    }, 2000);
+    return;
+  }
+
   if (!y) {
     return;
   }
@@ -78,21 +89,21 @@ operators.forEach((button) => {
   });
 });
 
-clearBtn.addEventListener('click', () => {
+const clear = () => {
   inputText = [];
   textDisplay.textContent = 0;
   x = '';
   y = '';
   operator = '';
-});
+};
+
+clearBtn.addEventListener('click', clear);
 
 equalSign.addEventListener('click', equate);
 
 /* TODO:
 
 - You should round answers with long decimals so that they don’t overflow the display.
-- Pressing = before entering all of the numbers or an operator could cause problems!
-- Pressing “clear” should wipe out any existing data. Make sure the user is really starting fresh after pressing “clear”.
 - Display a snarky error message if the user tries to divide by 0… and don’t let it crash your calculator!
 
 Extra credit
