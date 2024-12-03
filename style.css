@@ -79,7 +79,7 @@ body {
   height: auto;
 }
 
-.numbers {
+.textDisplay {
   font-size: 2rem;
   flex-basis: 100%;
   display: flex;
