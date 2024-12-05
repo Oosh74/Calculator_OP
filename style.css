@@ -92,6 +92,13 @@ body {
   height: auto;
   overflow-x: auto;
   white-space: no-wrap;
+  caret-color: transparent;
+  text-align: right;
+}
+
+.textDisplay::placeholder {
+  color: white;
+  opacity: 1; /* for Firefox */
 }
 
 .button-wrapper {
