@@ -30,7 +30,7 @@ let calculationsObj = {
 
 const equate = (existingOperator = false, operatorClicked) => {
   if (x === '0' && operator === '/') {
-    textDisplay.textContent = 'You shall not pass!';
+    textDisplay.value = 'You shall not pass!';
     setTimeout(() => {
       clear();
     }, 2000);
@@ -43,19 +43,19 @@ const equate = (existingOperator = false, operatorClicked) => {
 
   if (existingOperator === true) {
     // Perform calculation with current x, y, and operator
-    textDisplay.textContent = `${calculationsObj[operator](x, y)}`;
+    textDisplay.value = `${calculationsObj[operator](x, y)}`;
     // Update x to the result
-    x = textDisplay.textContent;
+    x = textDisplay.value;
     // Reset y and set the new operator
     y = '';
     operator = operatorClicked;
     // Update the display with the result and new operator
     inputText = [x, operatorClicked];
-    textDisplay.textContent = inputText.join('');
+    textDisplay.value = inputText.join('');
   } else {
-    textDisplay.textContent = `${calculationsObj[operator](x, y)}`;
-    inputText = [textDisplay.textContent];
-    x = textDisplay.textContent;
+    textDisplay.value = `${calculationsObj[operator](x, y)}`;
+    inputText = [textDisplay.value];
+    x = textDisplay.value;
     y = '';
     operator = '';
   }
@@ -64,7 +64,7 @@ const equate = (existingOperator = false, operatorClicked) => {
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
     inputText.push(button.textContent);
-    textDisplay.textContent = inputText.join('');
+    textDisplay.value = inputText.join('');
     if (operator.length === 0) {
       x += button.textContent;
     } else {
@@ -84,21 +84,26 @@ operators.forEach((button) => {
     } else {
       operator = button.textContent;
       inputText.push(operator);
-      textDisplay.textContent = inputText.join('');
+      textDisplay.value = inputText.join('');
     }
   });
 });
 
 const clear = () => {
   inputText = [];
-  textDisplay.textContent = 0;
+  textDisplay.value = 0;
   x = '';
   y = '';
   operator = '';
 };
 
-clearBtn.addEventListener('click', clear);
+textDisplay.addEventListener('input', (event) => {
+  inputText.push(event.target.value);
+  textDisplay.value = event.target.value;
+  console.log('keypressed', event.target.value);
+});
 
+clearBtn.addEventListener('click', clear);
 equalSign.addEventListener('click', equate);
 
 /* TODO:

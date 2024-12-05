@@ -13,6 +13,10 @@ html {
   text-size-adjust: none;
 }
 
+input {
+  all: unset;
+}
+
 button {
   all: unset; /* Removes all inherited styles */
   display: inline-block; /* Ensures block-like behavior */
