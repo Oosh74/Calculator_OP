@@ -128,3 +128,8 @@ body {
   flex: 1;
   background-color: #c45bdc;
 }
+
+button:hover {
+  transition: 0.2s ease-in-out;
+  background-color: #c45bdcc4;
+}
