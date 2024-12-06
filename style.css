@@ -85,13 +85,12 @@ body {
 
 .textDisplay {
   font-size: 2rem;
-  flex-basis: 100%;
+  width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   height: auto;
   overflow-x: auto;
-  white-space: no-wrap;
   caret-color: transparent;
   text-align: right;
 }
