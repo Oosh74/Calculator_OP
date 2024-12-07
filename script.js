@@ -103,6 +103,10 @@ textDisplay.addEventListener('input', (event) => {
   console.log('keypressed', event.target.value);
 });
 
+document.addEventListener('click', () => {
+  textDisplay.focus();
+});
+
 clearBtn.addEventListener('click', clear);
 equalSign.addEventListener('click', equate);
 
