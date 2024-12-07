@@ -75,6 +75,10 @@ numberButtons.forEach((button) => {
 
 operators.forEach((button) => {
   button.addEventListener('click', () => {
+    if (x === '') {
+      return;
+    }
+
     if (operator && !y) {
       return;
     }
