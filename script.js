@@ -145,6 +145,7 @@ equalSign.addEventListener('click', equate);
 - Make it so first typed text input replaces the 0
 - Make it so typed text input gets assigned to correct x, y, and operator variables
 - Refactor calculator so that updating the display is modular/a helper function
+- Organize code better (serparate helper functions, event listeners, etc, global vars, etc)
 
 Extra credit
 -Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. 
