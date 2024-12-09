@@ -76,14 +76,18 @@ numberButtons.forEach((button) => {
 operators.forEach((button) => {
   button.addEventListener('click', () => {
     if (x === '') {
+      //Prevents user from entering operator before x value
       return;
     }
 
     if (operator && !y) {
+      //Prevents user from prematurely performing an equation without y value
       return;
     }
 
     if (operator.length > 0 && y.length > 0) {
+      //Allows for stringing equations by equating when hitting the next desired operator,
+      //will equate and update equation/display with result and preceeding operator
       equate(true, button.textContent);
     } else {
       operator = button.textContent;
