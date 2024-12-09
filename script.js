@@ -102,9 +102,36 @@ const clear = () => {
 };
 
 textDisplay.addEventListener('input', (event) => {
-  inputText.push(event.target.value);
-  textDisplay.value = event.target.value;
-  console.log('keypressed', event.target.value);
+  const allowedChars = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '0',
+    '*',
+    '+',
+    '/',
+    '-',
+  ];
+
+  const filterChar = [...event.target.value].filter((char) => {
+    if (!allowedChars.includes(event.target.value)) {
+      console.log(allowedChars.includes(event.target.value));
+      console.log('keypressed', event.target.value);
+      console.log(typeof event.target.value);
+      return;
+    } else {
+      return char;
+    }
+  });
+
+  inputText.push(filterChar);
+  textDisplay.value += filterChar;
 });
 
 document.addEventListener('click', () => {
@@ -115,8 +142,9 @@ clearBtn.addEventListener('click', clear);
 equalSign.addEventListener('click', equate);
 
 /* TODO:
-
-- You should round answers with long decimals so that they don’t overflow the display.
+- Make it so first typed text input replaces the 0
+- Make it so typed text input gets assigned to correct x, y, and operator variables
+- Refactor calculator so that updating the display is modular/a helper function
 
 Extra credit
 -Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. 
@@ -124,4 +152,7 @@ Extra credit
 than one though, like: 12.3.56.5. Disable the . button if there’s already a decimal separator in the display.
 - Add a “backspace” button, so the user can undo their last input if they click the wrong number.
 - Add keyboard support!
+
+
+
 */
