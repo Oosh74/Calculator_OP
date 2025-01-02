@@ -8,9 +8,10 @@ const backspaceBtn = document.querySelector('.backspace');
 //----End Query Selectors----//
 
 //----Calc Logic & State----//
-let x = '';
+let x = '0';
 let y = '';
 let operator = '';
+textDisplay.textContent = 0;
 
 const calculationsObj = {
   '+': (x, y) => parseFloat((Number(x) + Number(y)).toFixed(2)),
@@ -24,16 +25,10 @@ const calculationsObj = {
 //----Helper Functions----//
 const updateDisplay = () => {
   textDisplay.textContent = `${x} ${operator} ${y}`;
-
-  if (x.length === 0) {
-    textDisplay.textContent = 0;
-  } else {
-    textDisplay.textContent = `${x} ${operator} ${y}`;
-  }
 };
 
 const clear = () => {
-  x = '';
+  x = '0';
   y = '';
   operator = '';
   updateDisplay();
@@ -66,11 +61,20 @@ const equate = (existingOperator) => {
 //----Event Listeners----//
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    if (!operator) {
+    if (button.textContent === '0') {
+      // Prevent pressing multiple zeros when x or y is already '0'
+      if (x === '0' && !operator) return; // Prevent adding '0' to x if it's already '0'
+      if (y === '0' && operator) return; // Prevent adding '0' to y if it's already '0'
+    }
+
+    if (!operator && x.length === 1 && x === '0') {
+      x = button.textContent;
+    } else if (!operator) {
       x += button.textContent;
     } else {
       y += button.textContent;
     }
+
     updateDisplay();
   });
 });
@@ -94,8 +98,10 @@ backspaceBtn.addEventListener('click', () => {
     y = y.slice(0, -1);
   } else if (operator) {
     operator = '';
-  } else if (x.length > 0) {
+  } else if (x.length > 1) {
     x = x.slice(0, -1);
+  } else if (x.length === 1 && x !== '0') {
+    x = '0';
   }
   updateDisplay();
 });
