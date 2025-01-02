@@ -133,6 +133,9 @@ document.addEventListener('keydown', (event) => {
     backspaceBtn.click();
   } else if (key === 'Escape') {
     clear();
+  } else if (key === ' ') {
+    event.preventDefault;
+    return;
   }
 });
 //----End Event Listeners----//
