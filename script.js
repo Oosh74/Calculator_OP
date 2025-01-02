@@ -24,27 +24,29 @@ const calculationsObj = {
 //----Helper Functions----//
 const updateDisplay = () => {
   textDisplay.textContent = `${x} ${operator} ${y}`;
-  console.log(`X: ${x}, OPERATOR: ${operator}, Y: ${y}. `);
 
   if (x.length === 0) {
     textDisplay.textContent = 0;
+  } else {
+    textDisplay.textContent = `${x} ${operator} ${y}`;
   }
+
+  console.log(`X: ${x}, OPERATOR: ${operator}, Y: ${y} `);
 };
 
 const clear = () => {
   x = '';
   y = '';
   operator = '';
-  textDisplay.textContent = '0';
+  updateDisplay();
 };
 
-const equate = (existingOperator = false, operatorClicked) => {
+const equate = (existingOperator) => {
   if (x === '0' && operator === '/') {
     textDisplay.textContent = 'You shall not pass!';
     setTimeout(() => {
       clear();
     }, 2000);
-    return;
   }
 
   if (!y) return;
@@ -52,7 +54,13 @@ const equate = (existingOperator = false, operatorClicked) => {
   const result = calculationsObj[operator](x, y);
   x = result.toString();
   y = '';
-  operator = existingOperator ? operatorClicked : '';
+
+  if (existingOperator) {
+    operator = existingOperator;
+  } else {
+    operator = '';
+  }
+
   updateDisplay();
 };
 //----End Helper Functions----//
@@ -60,6 +68,7 @@ const equate = (existingOperator = false, operatorClicked) => {
 //----Event Listeners----//
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
+    console.log('button type', typeof button.textContent);
     if (!operator) {
       x += button.textContent;
     } else {
@@ -75,12 +84,12 @@ operators.forEach((button) => {
       operator = button.textContent;
       updateDisplay();
     } else if (x && operator && y) {
-      equate(true, button.textContent);
+      equate(button.textContent);
     }
   });
 });
 
-equalSign.addEventListener('click', () => equate(false));
+equalSign.addEventListener('click', () => equate());
 clearBtn.addEventListener('click', clear);
 
 backspaceBtn.addEventListener('click', () => {
@@ -96,26 +105,30 @@ backspaceBtn.addEventListener('click', () => {
 
 document.addEventListener('keydown', (event) => {
   const key = event.key;
+  console.log(event.key);
+  console.log(typeof event.key);
+
+  // Check for number keys (0-9) or the decimal point
   if (!isNaN(key)) {
-    if (!operator) {
-      x += key;
-    } else {
-      y += key;
+    const button = Array.from(numberButtons).find(
+      (button) => button.textContent === key
+    );
+    if (button) {
+      button.click();
     }
-    updateDisplay();
-  } else if (['*', '+', '/', '-'].includes(key)) {
-    if (x && !operator) {
-      operator = key;
-      updateDisplay();
-    } else if (x && operator && y) {
-      equate(true, key);
+  }
+  // Check for operator keys (+, -, *, /)
+  else if (['+', '-', '*', '/'].includes(key)) {
+    const button = Array.from(operators).find(
+      (button) => button.textContent === key
+    );
+    if (button) {
+      button.click();
     }
   } else if (key === 'Enter') {
-    if (y === '' || operator === '') {
-      return;
-    } else {
-      equate();
-    }
+    event.preventDefault();
+    event.stopPropagation();
+    equalSign.click();
   } else if (key === 'Backspace') {
     backspaceBtn.click();
   } else if (key === 'Escape') {
