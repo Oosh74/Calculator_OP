@@ -13,17 +13,17 @@ html {
 }
 
 button {
-  all: unset; /* Removes all inherited styles */
-  display: inline-block; /* Ensures block-like behavior */
-  cursor: pointer; /* Shows a pointer on hover */
-  background: none; /* Clears default button background */
-  padding: 0; /* Removes default padding */
-  margin: 0; /* Removes default margin */
-  line-height: inherit; /* Inherits line-height */
-  text-align: center; /* Centers text */
+  all: unset;
+  display: inline-block;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
+  text-align: center;
 }
 
-/* Remove default margin in favour of better control in authored CSS */
+/* Remove default margin in favour of better control in CSS */
 body,
 h1,
 h2,
@@ -58,6 +58,7 @@ body {
   );
 }
 
+/*Calculator CSS*/
 .calc-wrapper {
   background-color: #2a2e37;
   display: flex;
