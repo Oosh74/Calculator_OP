@@ -30,8 +30,6 @@ const updateDisplay = () => {
   } else {
     textDisplay.textContent = `${x} ${operator} ${y}`;
   }
-
-  console.log(`X: ${x}, OPERATOR: ${operator}, Y: ${y} `);
 };
 
 const clear = () => {
@@ -68,7 +66,6 @@ const equate = (existingOperator) => {
 //----Event Listeners----//
 numberButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    console.log('button type', typeof button.textContent);
     if (!operator) {
       x += button.textContent;
     } else {
@@ -105,10 +102,6 @@ backspaceBtn.addEventListener('click', () => {
 
 document.addEventListener('keydown', (event) => {
   const key = event.key;
-  console.log(event.key);
-  console.log(typeof event.key);
-
-  // Check for number keys (0-9) or the decimal point
   if (!isNaN(key)) {
     const button = Array.from(numberButtons).find(
       (button) => button.textContent === key
@@ -116,9 +109,7 @@ document.addEventListener('keydown', (event) => {
     if (button) {
       button.click();
     }
-  }
-  // Check for operator keys (+, -, *, /)
-  else if (['+', '-', '*', '/'].includes(key)) {
+  } else if (['+', '-', '*', '/'].includes(key)) {
     const button = Array.from(operators).find(
       (button) => button.textContent === key
     );
