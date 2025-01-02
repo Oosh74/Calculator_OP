@@ -3,7 +3,6 @@
 *::after,
 * {
   box-sizing: border-box;
-  outline: 1px solid blue;
 }
 
 /* Prevent font size inflation */
