@@ -13,10 +13,6 @@ html {
   text-size-adjust: none;
 }
 
-input {
-  all: unset;
-}
-
 button {
   all: unset; /* Removes all inherited styles */
   display: inline-block; /* Ensures block-like behavior */
@@ -91,13 +87,7 @@ body {
   justify-content: flex-end;
   height: auto;
   overflow-x: auto;
-  caret-color: transparent;
   text-align: right;
-}
-
-.textDisplay::placeholder {
-  color: white;
-  opacity: 1; /* for Firefox */
 }
 
 .button-wrapper {
