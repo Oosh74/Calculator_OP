@@ -67,6 +67,14 @@ numberButtons.forEach((button) => {
       if (y === '0' && operator) return; // Prevent adding '0' to y if it's already '0'
     }
 
+    if (button.textContent === '.') {
+      if (x.includes('.') && y.length === 0) {
+        return;
+      } else if (y.includes('.')) {
+        return;
+      }
+    }
+
     if (!operator && x.length === 1 && x === '0') {
       x = button.textContent;
     } else if (!operator) {
@@ -108,7 +116,7 @@ backspaceBtn.addEventListener('click', () => {
 
 document.addEventListener('keydown', (event) => {
   const key = event.key;
-  if (!isNaN(key)) {
+  if (!isNaN(key) || key === '.') {
     const button = Array.from(numberButtons).find(
       (button) => button.textContent === key
     );
